@@ -7,27 +7,18 @@ if not exist "%SCRIPT_DIR%" mkdir "%SCRIPT_DIR%"
 
 cd /d "%SCRIPT_DIR%"
 
+echo Baixando arquivos necessários...
 powershell -Command "(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/migueldav/download_youtube/refs/heads/main/download_ytb.py', 'download_ytb.py')"
+powershell -Command "(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/migueldav/download_youtube/refs/heads/main/setup.py', 'setup.py')"
 
-(
-echo from setuptools import setup
-echo.
-echo setup(
-echo     name="download_ytb",
-echo     version="1.0",
-echo     py_modules=["download_ytb"],
-echo     install_requires=[
-echo         "pytubefix",
-echo     ],
-echo     entry_points={
-echo         "console_scripts": [
-echo             "download_ytb=download_ytb:main",
-echo         ],
-echo     },
-echo )
-) > setup.py
+if not exist "setup.py" (
+    echo Erro: setup.py nao foi baixado corretamente.
+    pause
+    exit /b 1
+)
 
 pip install pytubefix
+pip install --upgrade setuptools
 pip install --editable .
 
 echo Instalacao concluida! Agora voce pode usar 'download_ytb' no terminal sem aspas!
