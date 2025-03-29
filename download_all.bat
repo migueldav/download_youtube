@@ -7,7 +7,7 @@ if not exist "%SCRIPT_DIR%" mkdir "%SCRIPT_DIR%"
 
 cd /d "%SCRIPT_DIR%"
 
-powershell -Command "(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/seu-repositorio/download_ytb.py', 'download_ytb.py')"
+powershell -Command "(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/migueldav/download_youtube/refs/heads/main/download_ytb.py', 'download_ytb.py')"
 
 (
 echo from setuptools import setup
